@@ -40,6 +40,25 @@ def toy3(a,b):
             somma+=i
         return somma
 
+
+# Data una lista, ordinare al suo inerno solo i numeri pari. i campi della lista che hanno un valore dispari devono rimanere al loro posto.
+# esempio: [9, 8, 7, 6, 5 ,4 , 4, 3, 1] diventa [9, 4, 7, 4, 5 ,6 , 8, 3, 1]
+def toy4():
+    lista=[9, 8, 7, 6, 5 ,4 , 4, 3, 1]
+    listaAus=[]
+    j=0
+    for i in lista:
+        if i%2==0:
+            listaAus.append(i)
+    listaAus.sort()
+    print(listaAus)
+    for k in range(len(lista)):
+        if lista[k]%2==0:
+            lista[k]=listaAus[j]
+            j+=1
+    return lista
+
 print(toy1(a,b))
 print(toy2(42145))
 print(toy3(5,11))
+print(toy4())
