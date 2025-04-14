@@ -7,10 +7,9 @@ listaPunteggioPartecipanti = []
 lockPunteggio = threading.Lock()
 
 def creaLista():
-    for i in range(1, 11):
-        s = "C" + str(i)
-        listaPartecipanti.append(s)
-        listaPunteggioPartecipanti.append(0)
+    global listaPartecipanti, listaPunteggioPartecipanti
+    listaPartecipanti = ["C" + str(x) for x in range(1, 11)]
+    listaPunteggioPartecipanti = [0 for _ in range(10)]
     print("Lista creata:", listaPartecipanti)
 
 def primaProva(n):
