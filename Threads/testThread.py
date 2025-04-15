@@ -9,7 +9,7 @@ lock=threading.Lock()
 # thread2=threading.Thread(target=iniziaProva,args=("Thread 2",))
 
 def inizio():
-    def iniziaProva(testo,index):
+    def iniziaProva(index):
         print(f"Thread {index} Processo iniziato")
         r=random.randint(1,5)
         time.sleep(r)
@@ -19,19 +19,20 @@ def inizio():
     
     listaThread=["C"+str(x) for x in range(11)]
     print(listaThread)
+
     classifica=[]
     threads=[]
     listaPunteggioPartecipanti=[0 for _ in range(11)]
     for i in range(len(listaThread)):
-        t=threading.Thread(target=iniziaProva,args=("bella",i))
+        t=threading.Thread(target=iniziaProva,args=(i,))
         threads.append(t)
         t.start()
-        
+
     for t in threads:
         t.join()
     print(classifica)
     classifica.sort(reverse=True)
-    
+
   
     print(classifica)
     

@@ -8,4 +8,4 @@ def intersezioneTraListe(lista1, lista2):
             lista3.append(i)
     return lista3
 
-print(intersezioneTraListe(lista1,lista2))
+print(intersezioneTraListe(lista1, lista2))
