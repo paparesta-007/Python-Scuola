@@ -1,9 +1,8 @@
 # calcoli la differenza tra due liste ricevute come parametro (la funzione dovrebbe rimuovere
 # dalla prima lista tutti gli elementi della seconda lista) e la restituisca senza modificare l'ordine degli elementi.
 # Esempio: dati a = [1, 2, 2, 2, 3] e b = [2], il risultato sia [1, 3]
-from operator import truediv
+import random
 
-from numpy.f2py.auxfuncs import throw_error
 
 
 def toy1(lista1, lista2):
@@ -47,7 +46,7 @@ def toy3(a, b):
         return somma
 
 
-# Data una lista, ordinare al suo inerno solo i numeri pari. i campi della lista che hanno un valore dispari devono rimanere al loro posto.
+# Data una lista, ordinare al suo interno solo i numeri pari. i campi della lista che hanno un valore dispari devono rimanere al loro posto.
 # esempio: [9, 8, 7, 6, 5 ,4 , 4, 3, 1] diventa [9, 4, 7, 4, 5 ,6 , 8, 3, 1]
 def toy4():
     lista = [9, 8, 7, 6, 5, 4, 4, 3, 1]
@@ -160,38 +159,77 @@ def numeroIpCompresi(s1, s2):
 
 
 def verificaISBN(s):
-    tot=0
-    if len(s)!=10:
+    tot = 0
+    if len(s) != 10:
         return "ISBN non contiene 10 caratteri"
     for i in range(10):
         if s[i].isdigit():
-            tot=tot+(int(s[i])*(i+1))
-        elif i==9 and s[i]=='X':
-            tot=10*(i+1)
+            tot = tot + (int(s[i]) * (i + 1))
+        elif i == 9 and s[i] == 'X':
+            tot = 10 * (i + 1)
         else:
             return "ISBN non valido"
-
-
 
     if tot % 11 == 0:
         return f"{s} è un ISBN valido"
     else:
         return f"{s} non è un ISBN valido"
 
-def intervalloDizionari(a,b):
-    s={
+
+def intervalloDizionari(a, b):
+    s = {
 
     }
-    if a<b:
-        for i in range(a,b+1):
-            s[i]=i**2
+    if a < b:
+        for i in range(a, b + 1):
+            s[i] = i ** 2
         return s
     else:
         return f"Il valore del primo elemento è più grande del secondo"
 
-def adiacenti(lista):
-    return tuple(set([lista[x] for x in range(len(lista)-1) if lista[x]==lista[x+1]])) # ritorna l'indice
 
+def adiacenti(lista):
+    return tuple(set([lista[x] for x in range(len(lista) - 1) if lista[x] == lista[x + 1]]))  # ritorna l'indice
+
+
+def freqMassima(lista):
+    listaAus =[]
+    for i in lista:
+        if i not in listaAus:
+            listaAus.append(i)
+
+    print(listaAus)
+    listaFreq=[lista.count(x) for x in listaAus]
+    print(listaFreq)
+    return listaAus[listaFreq.index(max(listaFreq))]
+
+
+def coppieTupleCrescenti(lista):
+    coppie=[]
+    for i in range(len(lista)-1):
+        if lista[i]<lista[i+1]:
+            coppie.append((lista[i],lista[i+1]))
+    return coppie
+
+def occorrenzeStringa(stringa):
+    dizionario={}
+    for i in stringa:
+        if i in dizionario:
+            dizionario[i]+=1
+        else:
+            dizionario[i]=1
+    return dizionario
+
+def paroleUniche(listaParole):
+    secondaLista=[]
+    for parola in listaParole:
+        if len(set(parola))==len(parola):
+            secondaLista.append(parola)
+    return secondaLista
+
+def listaLunghezze(lista):
+    listaLen=[(x,len(x)) for x in lista]
+    return listaLen
 
 print(toy1(a, b))
 print(toy2(42145))
@@ -201,5 +239,10 @@ print(CodificaCesare("aA bB zZ 1234"))
 print(ipChecker("192.168.1.1"))
 print(numeroIpCompresi("192.138.0.0", "192.168.255.255"))
 print(verificaISBN("1112223339"))
-print(intervalloDizionari(12,34))
-print(adiacenti( [12,45,45,45,34,78,78,99]))
+print(intervalloDizionari(12, 34))
+print(adiacenti([12, 45, 45, 45, 34, 78, 78, 99]))
+print(freqMassima([4, 5, 6, 4, 3, 4, 5, 5]))
+print(coppieTupleCrescenti([5, 1, 3, 4,5,12,23,1, 2]))
+print(occorrenzeStringa("ciao come va, io bene e tu"))
+print(paroleUniche(["ciao", "anna", "mario", "otto"]))
+print(listaLunghezze(["a","sky","full","of","stars"]))

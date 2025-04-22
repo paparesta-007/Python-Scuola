@@ -1,6 +1,4 @@
 import time, random, threading
-from operator import indexOf
-
 listaConcorrentiTotali = ["C" + str(x) for x in range(1, 11)]
 listaPunteggio = [0 for _ in range(1, 11)]
 lockPunteggio=threading.Lock()
